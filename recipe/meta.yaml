@@ -27,15 +27,20 @@ requirements:
     - dataclasses-json
     - pandas
     - numpy
+    - matplotlib
 
 test:
   imports:
     - pylpg
   commands:
     - pip check
+    - pytest
+  source_files:
+    - .
   requires:
     - pip
     - python {{ python_min }}
+    - pytest
 
 about:
   home: https://github.com/FZJ-IEK3-VSA/pylpg
