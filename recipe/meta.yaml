@@ -1,5 +1,6 @@
 {% set name = "pyloadprofilegenerator" %}
 {% set version = "0.1.1" %}
+{% set python_min = "3.10" %}
 
 package:
   name: {{ name|lower }}
@@ -12,29 +13,35 @@ source:
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.6
+    - python {{ python_min }}
     - setuptools-git
     - pip
     - setuptools
   run:
-    - python >=3.6
+    - python >={{ python_min }}
     - setuptools
     - requests
     - dataclasses-json
     - pandas
     - numpy
+    - matplotlib
 
 test:
   imports:
     - pylpg
   commands:
     - pip check
+    - pytest
+  source_files:
+    - .
   requires:
     - pip
+    - python {{ python_min }}
+    - pytest
 
 about:
   home: https://github.com/FZJ-IEK3-VSA/pylpg
