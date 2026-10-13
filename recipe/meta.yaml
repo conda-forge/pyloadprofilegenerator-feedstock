@@ -1,13 +1,13 @@
 {% set name = "pyloadprofilegenerator" %}
-{% set version = "0.1.1" %}
+{% set version = "0.2.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pyloadprofilegenerator-{{ version }}.tar.gz
-  sha256: f09a4a4d4e123b1a04f329f9e4dd517854c2d7e672514705b32dee65603f78a2
+  url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/pyloadprofilegenerator-{{ version }}.tar.gz
+  sha256: a735bdffd1060a33c8f43795116c32bca0e8c5a060a0bf8a65300f844a0cddf7
 
 build:
   noarch: python
