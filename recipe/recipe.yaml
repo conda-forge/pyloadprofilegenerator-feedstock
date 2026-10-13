@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  name: pyloadprofilegenerator
+  version: "0.2.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pyloadprofilegenerator-${{ version }}.tar.gz
+  sha256: a735bdffd1060a33c8f43795116c32bca0e8c5a060a0bf8a65300f844a0cddf7
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+    - setuptools-git
+  run:
+    - python >=${{ python_min }}
+    - setuptools
+    - requests
+    - dataclasses-json
+    - pandas
+    - numpy
+    - pytables
+
+tests:
+  - python:
+      imports:
+        - pylpg
+        - pylpg.lpg_execution
+        - pylpg.sweep.merge_results
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
+
+about:
+  homepage: https://github.com/FZJ-IEK3-VSA/pylpg
+  summary: Python Bindings for the LoadProfileGenerator
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - julian-belina
+    - noah80
